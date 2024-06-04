@@ -2,32 +2,33 @@ import sys, urllib.parse
 from pymd5 import md5, padding
 url = sys.argv[1]
 
-# Your code to modify url goes here
-
 parsedUrl = urllib.parse.urlparse(url)
 # print(parsedUrl)
 hash_old = parsedUrl.query[6:38] # token value
 # print(hash_old)
 command_old = parsedUrl.query[39:]
-# print(len(command_old))
+# print(command_old)
 
 # token = list(urllib.parse.parse_qs(url).values())[0][0] # with this i can get the token value of the url
-# # print(token)
+# print(token)
 m = hash_old + command_old
 # m = token + "&user=earlence&command1=ListSquirrels&command2=NoOp" # need a way to somehow parse the message
 
-# get the current hash
-bits = (len(m) + len(padding(len(m) * 8))) * 8
-h = md5(state=bytes.fromhex(m), count=bits) 
+# # get the current hash
+# bits = (len(m) + len(padding(len(m) * 8))) * 8
+# h = md5(state=bytes.fromhex(hash_old), count=bits) 
+h = md5(m)
+# h.update(m)
 # print(h.hexdigest())
 
 
-# ## need to calculate the padding length
+# need to calculate the padding length
 
 
 x = "&command3=UnlockAllSafes" # appended value
 
 result = m + urllib.parse.quote(padding(len(m)*8))+ x
+
 # print(result)
 
 h.update(result)
