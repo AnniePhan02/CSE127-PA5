@@ -16,8 +16,9 @@ m = hash_old + command_old
 
 # # get the current hash
 # bits = (len(m) + len(padding(len(m) * 8))) * 8
-# h = md5(state=bytes.fromhex(hash_old), count=bits) 
-h = md5(m)
+bits = (len(m) + len(padding(len(m) * 8))) * 8
+h = md5(state=bytes.fromhex(hash_old), count=bits) 
+# h = md5(m)
 # h.update(m)
 # print(h.hexdigest())
 
