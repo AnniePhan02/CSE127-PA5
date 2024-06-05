@@ -1,0 +1,11 @@
+
+EOF
+digest=$(cat DIGEST | sed 's/(stdin)= //' )
+hash="SHA2-25628a85a7162c4923ed68a2a543d7c6c78c69651774c608cc25ad26170520d2460"
+
+if [[ "$digest" == "$hash" ]]; then
+    echo "I mean no harm."
+else 
+    echo "You are doomed!"
+fi
+
